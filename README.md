@@ -11,18 +11,18 @@
 ### Get Vision One Token
 1. Login to [Vision One Portal](https://portal.xdr.trendmicro.com/index.html)
 2. Create limited User Role
-2.1. Go to Administration -> User Roles
-2.2. Press "Add Role" button
-2.3. Role name: "VOneEx"
-2.4. On permissions tab->Threat Intelligence->Suspicious Object Management - check all checkboxes 
-2.5. Press "Save" button
+    1. Go to Administration -> User Roles
+    2. Press "Add Role" button
+    3. Role name: "VOneEx"
+    4. On permissions tab->Threat Intelligence->Suspicious Object Management - check all checkboxes 
+    5. Press "Save" button
 
 3. Create API Key
-3.1. Go to Administration->API Keys
-3.2. Press "Add API Key" button
-3.3. Name: VOneEx, Role: "VOneEx" created previously
-3.4. Press "Add" button
-3.5. Save API Key for later use
+    1. Go to Administration->API Keys
+    2. Press "Add API Key" button
+    3. Name: VOneEx, Role: "VOneEx" created previously
+    4. Press "Add" button
+    5. Save API Key for later use
 
 ### Get The Latest Version
 
