@@ -20,13 +20,13 @@
 3. Create API Key
     1. Go to Administration->API Keys
     2. Press "Add API Key" button
-    3. Name: VOneEx, Role: "VOneEx" created previously
+    3. Name: "VOneEx", Role: "VOneEx" created previously
     4. Press "Add" button
     5. Save API Key for later use
 
 ### Get The Latest Version
 
-Download [latest release](https://github.com/mpkondrashin/voneex/releases/latest) for your platform, unpack archive.
+Download [latest release](https://github.com/mpkondrashin/voneex/releases/latest) for your platform and unpack archive.
 
 ### Run VOneEx
 
@@ -37,7 +37,7 @@ voneex --apikey <api key>
 
 ## Bugs:
 
-# If macOS does not allow to run voneex, run following command:
+If macOS does not allow to run voneex, run following command:
 ```commandline
 xattr -c voneex
 ```
