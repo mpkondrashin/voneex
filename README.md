@@ -6,6 +6,9 @@
   <img src="voneex.jpeg" alt="VOneEx" width="50%">
 </p>
 
+
+VOneEx populates the Vision One IoC exception list with [IANA IPv4 Special-Purpose Address Registry](https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml) entries to prevent false positives and unnecessary alerts.
+
 ## Usage
 
 ### Get Vision One Token
@@ -37,7 +40,11 @@ voneex --apikey <api key>
 
 ## Bugs:
 
-If macOS does not allow to run voneex, run following command:
+### If some of IANA Address Registry are not needed
+
+Go to Threat Intelligence->Suspicious Object Management->Exception List->Object type->IP address and delete excess entries.
+
+### If macOS does not allow to run voneex, run following command:
 ```commandline
 xattr -c voneex
 ```
