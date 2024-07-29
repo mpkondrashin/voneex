@@ -1,0 +1,44 @@
+#
+# VOneEx (c) 2024 by Michael Kondrashin (mkondrashin@gmail.com)
+# Copyright under MIT Lincese. Please see LICENSE file for details
+#
+# build.yml - github actions file to build release
+#
+
+name: Build
+on:
+  push:
+    tags:
+    - '*'
+jobs:
+  Build-Release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+      - name: Check Go version
+        run: go version
+      - name: Build
+        run: |
+          export PATH=${PATH}:`go env GOPATH`/bin
+          go generate
+          GOOS=linux GOARCH=amd64 go build 
+          tar cfvz voneex_linux_amd64.tgz voneex
+          GOOS=darwin GOARCH=amd64 go build 
+          tar cfvz voneex_darwin_amd64.tgz voneex
+          GOOS=darwin GOARCH=arm64 go build
+          tar cfvz voneex_darwin_arm64.tgz voneex
+          GOOS=windows GOARCH=amd64 go build
+          tar cfvz voneex_windows_amd64.tgz voneex.exe
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            voneex_linux_amd64.tgz
+            voneex_darwin_amd64.tgz
+            voneex_darwin_arm64.tgz
+            voneex_windows_amd64.tgz
