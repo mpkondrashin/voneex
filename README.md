@@ -40,7 +40,7 @@ voneex --apikey <api key>
 
 ## Bugs:
 
-### If some of IANA Address Registry are not needed
+### If some of IANA Address Registry IPs are not needed
 
 Go to Threat Intelligence->Suspicious Object Management->Exception List->Object type->IP address and delete excess entries.
 
