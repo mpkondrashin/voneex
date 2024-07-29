@@ -25,6 +25,7 @@ func DownloadFile(url, filename string) error {
 		log.Println("Special registry file already exists, skipping download")
 		return nil
 	}
+	log.Printf("%s is missing. Downloading from %s", csvFilename, specialRegistry)
 	resp, err := http.Get(url + filename)
 	if err != nil {
 		return fmt.Errorf("failed to download Special registry file: %w", err)
@@ -45,7 +46,7 @@ func DownloadFile(url, filename string) error {
 	return nil
 }
 
-func IterateCSV(filename string, callback func(string) error) error {
+func IterateCSV(filename string, callback func(string, string, string) error) error {
 	file, err := os.Open(filename)
 	if err != nil {
 		return err
@@ -67,7 +68,7 @@ func IterateCSV(filename string, callback func(string) error) error {
 			return err
 		}
 		if len(record) > 0 {
-			err := callback(record[0])
+			err := callback(record[0], record[1], record[2])
 			if err != nil {
 				return err
 			}
@@ -101,12 +102,13 @@ func main() {
 	vOne := vone.NewVOne(domain, *apiKey)
 	addException := vOne.AddExceptions()
 
-	err = IterateCSV(csvFilename, func(ip string) error {
+	err = IterateCSV(csvFilename, func(ip, name, rfc string) error {
 		for _, s := range strings.Split(ip, ",") {
 			// Remove suffix with square brackets and number
 			s = regexp.MustCompile(`\s*\[\d+\]$`).ReplaceAllString(s, "")
 			s = strings.TrimSpace(s)
-			addException.AddIP(s, "IANA IPv4 Special-Purpose Address Registry")
+			description := fmt.Sprintf("IANA Special-Purpose Address Registry: %s, %s", name, rfc)
+			addException.AddIP(s, description)
 			log.Printf("Add %s", s)
 		}
 		return nil
