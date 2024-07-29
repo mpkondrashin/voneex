@@ -2,7 +2,9 @@
 
 **Populate Vision One IoC exception list with IANA IPv4 Special-Purpose Address**
 
-![VOneEx](voneex.jpeg)
+<p align="center">
+  <img src="voneex.jpeg" alt="VOneEx" width="50%">
+</p>
 
 ## Usage
 
